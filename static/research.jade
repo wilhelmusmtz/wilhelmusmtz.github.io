@@ -1,0 +1,41 @@
+extends layout
+
+block localcss
+	link(href='../styles/style.css',rel='stylesheet',type='text/css')
+
+block content
+	div.rsTopics
+		table(style='width:90%;margin-left:auto')
+			tr
+				td
+					a.topic(href='#' onclick="vid('../images/swarm.mp4',0)") Hydrodynamics of collective motion
+				td
+					a.topic(href='#' onclick="chg('../images/ecco.jpg',1)") Calcium carbonate dissolution in ocean sediments
+				td
+					a.topic(href='#' onclick="chg('../images/arctic.jpg',2)") Submesoscale dynamics in the Arctic
+	div#slide
+		div(id='sep' style='padding-top:20vh')
+			div#msgRs.
+				Collective motion is a widespread phenomenon observed in nature at multiple scales: from bacteria to humans. In the ocean, small organisms (like krill) swarm and migrate up-and-down the water column in order to avoid large predators. Our research focuses on  studying the hydrodynamics associated with this behavioral trait at scales where both viscous and inertial effects are important. Using experimental velocimetry techniques (PIV), we quantify fluid transport and induced mixing due to a migration event to estimate the contribution of organisms in sustaining their own ecosystem.
+	video(id='video' autoplay loop src='../images/swarm.mp4')
+
+	script.
+
+		
+		var text = ['Collective motion is a widespread phenomenon observed in nature at multiple scales: from bacteria to humans. In the ocean, small organisms (like krill) swarm and migrate up-and-down the water column in order to avoid large predators. Our research focuses on  studying the hydrodynamics associated with this behavioral trait at scales where both viscous and inertial effects are important. Using experimental velocimetry techniques (PIV), we quantify fluid transport and induced mixing due to a migration event to estimate the contribution of organisms in sustaining their own ecosystem.', 'Calcium carbonate is a mineral produced at the ocean surface by planktonic species like foramnifera, for example, which produce calcitic shells. As the organisms die, this mineral eventually reaches the ocean sediments. Due to its link to carbon dioxide neutralization, we are interested in understanding what drives carbonate dissolution in ocean sediments. Our methods include theoretical modeling and numerical simulations using ECCO-2 Darwin, a state-of-the-art global ocean biogeochemistry model.', 'Heat and fluid properties in the ocean are distributed through a wide range of scales. The important contribution of so-called submesoscale eddies (with an order of magnitude ranging from 1 to 10 km) has motivated the development of new technologies, like ocean gliders, to characterize their motion. In regions like the Arctic, however, this can prove challenging. We are interested in combining satellite data with numerical models to quantify these motions and study sea-ice ocean interactions in a rapidly changing environment.']
+		
+		function chg(x,y){
+			document,slide.style.backgroundImage = "url("+ x +")";
+			document,msgRs.innerText = text[y];
+			document,slide.style.visibility = 'visible';
+			document,video.style.visibility = 'collapse';
+		};		
+		
+		function vid(x,y){
+			document,slide.style.visibility = 'collapse';
+			document,video.style.visibility = 'visible';
+
+			var msg = document.getElementById('msgRs');
+				msg.innerText = text[y];
+				msg.style.visibility = 'visible';
+		};
